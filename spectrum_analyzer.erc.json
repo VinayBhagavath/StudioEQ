@@ -29,31 +29,7 @@
         {
             "path": "/",
             "uuid_path": "/a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-            "violations": [
-                {
-                    "description": "Label connects more than one wire at 1346200, 546100",
-                    "items": [
-                        {
-                            "description": "Label 'CLK'",
-                            "pos": {
-                                "x": 1.3462,
-                                "y": 0.5461
-                            },
-                            "uuid": "aa8b5dce-5c05-4300-9816-5200004c834a"
-                        },
-                        {
-                            "description": "Wire, length 0.3529 mm",
-                            "pos": {
-                                "x": 1.4986,
-                                "y": 0.5715
-                            },
-                            "uuid": "5e9c65cc-ad2a-4353-ad01-d9f51632196e"
-                        }
-                    ],
-                    "severity": "warning",
-                    "type": "label_multiple_wires"
-                }
-            ]
+            "violations": []
         }
     ],
     "source": "spectrum_analyzer.kicad_sch"

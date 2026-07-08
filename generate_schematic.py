@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
-"""Generate spectrum_analyzer.kicad_sch — 8x6 LED matrix music visualizer."""
+"""Generate spectrum_analyzer.kicad_sch — 2x3 LED matrix music visualizer.
+
+Matches the built hardware (see README.md / music_visualizer.ino):
+  - Arduino Uno R3 -> 74HC595 shift register drives 3 columns (Q1/Q2/Q3)
+  - 2x NPN transistor (2N2222) sink the 2 rows
+  - 6x LED + 220 ohm column resistors, 2x 1k transistor base resistors
+Pinout: D10=SER/DATA, D11=RCLK/LATCH, D12=SRCLK/CLK, D2/D3=row bases.
+"""
 
 from __future__ import annotations
 
@@ -14,7 +21,6 @@ ROOT_UUID = "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
 PROJECT = "spectrum_analyzer"
 SYMS_DIR = Path("/Applications/KiCad/KiCad.app/Contents/SharedSupport/symbols")
 OUT = Path(__file__).parent / "spectrum_analyzer.kicad_sch"
-ERC_OUT = Path(__file__).parent / "ERC-v2.rpt"
 ERC_RPT = Path(__file__).parent / "ERC.rpt"
 GRID = 1.27
 KICAD_CLI = Path("/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli")
@@ -24,30 +30,35 @@ LIB_MAP = {
     "Device:LED": ("Device.kicad_sym", "LED"),
     "Transistor_BJT:Q_NPN_EBC": ("Transistor_BJT.kicad_sym", "Q_NPN_EBC"),
     "74xx:74HC595": ("74xx.kicad_sym", "74HC595"),
-    "Connector_Generic:Conn_01x11": ("Connector_Generic.kicad_sym", "Conn_01x11"),
+    "Connector_Generic:Conn_01x07": ("Connector_Generic.kicad_sym", "Conn_01x07"),
     "power:+5V": ("power.kicad_sym", "+5V"),
     "power:GND": ("power.kicad_sym", "GND"),
     "power:PWR_FLAG": ("power.kicad_sym", "PWR_FLAG"),
 }
 
-# Arduino Uno pin header map (Connector_Generic Conn_01x11)
+# Matrix size (as actually built)
+NUM_ROWS = 2
+NUM_COLS = 3
+
+# Arduino Uno pins broken out on the 7-pin header J1 (Connector_Generic Conn_01x07)
 AR_PINS = {
-    "D2": "1",
-    "D3": "2",
-    "D4": "3",
-    "D5": "4",
-    "D6": "5",
-    "D7": "6",
-    "D10": "7",
-    "D11": "8",
-    "D12": "9",
-    "+5V": "10",
-    "GND": "11",
+    "D2": "1",   # Row 1 transistor base (via 1k)
+    "D3": "2",   # Row 2 transistor base (via 1k)
+    "D10": "3",  # 74HC595 SER  (data)
+    "D11": "4",  # 74HC595 RCLK (latch)
+    "D12": "5",  # 74HC595 SRCLK (clock)
+    "+5V": "6",
+    "GND": "7",
 }
 
-ROW_SIGS = ["D2", "D3", "D4", "D5", "D6", "D7"]
-SHIFT_SIGS = [("D10", "12", "LATCH", 90.0), ("D11", "14", "DATA", 105.0), ("D12", "11", "CLK", 135.0)]
-Q_OUT_PINS = ["15", "1", "2", "3", "4", "5", "6", "7"]  # Q0..Q7 on 74HC595
+ROW_SIGS = ["D2", "D3"]
+# (Arduino signal, 74HC595 chip pin, net label, vertical bus x)
+#   D10 -> SER  (pin 14, data),  D11 -> RCLK (pin 12, latch),  D12 -> SRCLK (pin 11, clock)
+SHIFT_SIGS = [("D10", "14", "DATA", 95.0), ("D11", "12", "LATCH", 110.0), ("D12", "11", "CLK", 125.0)]
+# Columns 1,2,3 driven by Q1,Q2,Q3 (74HC595 QB/QC/QD = chip pins 1/2/3); Q0 (QA) unused.
+COL_Q_PINS = ["1", "2", "3"]
+# Unused shift-register outputs: QA(15), QE(4), QF(5), QG(6), QH(7), QH'(9)
+UNUSED_Q_PINS = ["15", "4", "5", "6", "7", "9"]
 
 
 def uid() -> str:
@@ -345,24 +356,24 @@ def build() -> str:
     gnd_rail_y = snap(45.0)
     matrix_right_x = snap(col_x0 + 7 * col_dx)  # right edge of LED matrix (for docs)
 
-    # --- Arduino (J1): 9 pins used — D2-D7 rows, D10-D12 shift register, +5V, GND ---
+    # --- Arduino header (J1): D2/D3 row bases, D10-D12 shift register, +5V, GND ---
     ar_x, ar_y = sym_pos(40.0, 80.0)
     sch.add(
         place(
-            "Connector_Generic:Conn_01x11",
+            "Connector_Generic:Conn_01x07",
             "J1",
             "Arduino_Uno",
             ar_x,
             ar_y,
-            footprint="Connector_PinHeader_2.54mm:PinHeader_1x11_P2.54mm_Vertical",
+            footprint="Connector_PinHeader_2.54mm:PinHeader_1x07_P2.54mm_Vertical",
         )
     )
 
     def ar_pin(sig: str) -> tuple[float, float]:
-        return pin_sheet("Connector_Generic:Conn_01x11", ar_x, ar_y, 0, AR_PINS[sig])
+        return pin_sheet("Connector_Generic:Conn_01x07", ar_x, ar_y, 0, AR_PINS[sig])
 
-    # --- 74HC595 column driver (8 outputs -> 220R -> column anodes) ---
-    u_x, u_y = sym_pos(160.0, 60.0)
+    # --- 74HC595 column driver (Q1-Q3 -> 220R -> column anodes) ---
+    u_x, u_y = sym_pos(170.0, 60.0)
     sch.add(place("74xx:74HC595", "U1", "74HC595", u_x, u_y, footprint="Package_DIP:DIP-16_W7.62mm"))
 
     def u_pin(num: str) -> tuple[float, float]:
@@ -395,9 +406,11 @@ def build() -> str:
     sch.junction(*gnd)
     sch.route([gnd, gnd_flag])
 
-    sch.no_connect(*pin_sheet("74xx:74HC595", u_x, u_y, 0, "9", outer=False))  # Q7' serial out — unused
+    # Unused shift-register outputs get no-connect flags (SRCLR/OE handled by power rails)
+    for up in UNUSED_Q_PINS:
+        sch.no_connect(*pin_sheet("74xx:74HC595", u_x, u_y, 0, up, outer=False))
 
-    # Shift register control: D10=LATCH, D11=DATA, D12=CLK
+    # Shift register control: D10->SER(DATA), D11->RCLK(LATCH), D12->SRCLK(CLK)
     for sig, upin, net, mid_x in SHIFT_SIGS:
         a = ar_pin(sig)
         u = u_pin(upin)
@@ -405,8 +418,10 @@ def build() -> str:
         sch.junction(mid_x, u[1])
         sch.label(net, mid_x, u[1])
 
-    # Column resistors R1-R8: 74HC595 Q0-Q7 -> 220R -> C1-C8 buses
-    for i, qp in enumerate(Q_OUT_PINS):
+    # Column resistors R1-R3: 74HC595 Q1-Q3 -> 220R -> C1-C3 column buses.
+    # Vertical resistor: top pin to the shift-register output, bottom pin to the
+    # column bus, so the resistor sits IN SERIES (never short both leads together).
+    for i, qp in enumerate(COL_Q_PINS):
         cx, ry = sym_pos(col_x0 + i * col_dx, 95.0)
         sch.add(
             place(
@@ -415,26 +430,27 @@ def build() -> str:
                 "220",
                 cx,
                 ry,
-                rot=90,
-                footprint="Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal",
+                rot=0,
+                footprint="Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P5.08mm_Vertical",
             )
         )
-        r1 = pin_sheet("Device:R", cx, ry, 90, "1")
-        r2 = pin_sheet("Device:R", cx, ry, 90, "2")
+        r_top = pin_sheet("Device:R", cx, ry, 0, "1")
+        r_bot = pin_sheet("Device:R", cx, ry, 0, "2")
         qout = u_pin(qp)
-        sch.route([qout, (r1[0], qout[1]), r1, r2, (cx, col_bus_y)])
+        sch.route([qout, (cx, qout[1]), r_top])
+        sch.route([r_bot, (cx, col_bus_y)])
         sch.junction(cx, col_bus_y)
         sch.label(f"C{i + 1}", cx, col_bus_y)
 
-    # LED matrix 8x6 — anodes on column buses, cathodes on row buses
+    # LED matrix (NUM_ROWS x NUM_COLS) — anodes on column buses, cathodes on row buses
     row_ys: list[float] = []
-    for row in range(6):
+    for row in range(NUM_ROWS):
         row_y = sym_pos(col_x0, led_y0 + row * led_dy)[1]
         row_ys.append(row_y)
         row_bus_y = pin_sheet("Device:LED", sym_pos(col_x0, row_y)[0], row_y, 0, "1", outer=True)[1]
 
-        for col in range(8):
-            led_num = row * 8 + col + 1
+        for col in range(NUM_COLS):
+            led_num = row * NUM_COLS + col + 1
             lx, ly = sym_pos(col_x0 + col * col_dx, row_y)
             sch.add(
                 place(
@@ -456,83 +472,80 @@ def build() -> str:
 
         sch.label(f"ROW{row + 1}", row_bus_x, row_bus_y)
 
-    # Row drivers: D2-D7 -> 1kR -> NPN base; collector -> ROW bus; emitter -> GND
+    # Row drivers: D2/D3 -> 1kR -> NPN base; collector -> ROW bus; emitter -> GND
     q_x = snap(55.0)
-    emitter_xs: list[float] = []
 
-    for row in range(6):
+    for row in range(NUM_ROWS):
         row_y = row_ys[row]
         row_bus_y = pin_sheet("Device:LED", sym_pos(col_x0, row_y)[0], row_y, 0, "1", outer=True)[1]
 
-        rx, ry = sym_pos(48.0 + row * 4.0, row_y)
+        rx, ry = sym_pos(40.0 + row * 5.0, row_y)
         sch.add(
             place(
                 "Device:R",
-                f"R{9 + row}",
+                f"R{NUM_COLS + 1 + row}",
                 "1k",
                 rx,
                 ry,
                 rot=0,
-                footprint="Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal",
+                footprint="Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P5.08mm_Vertical",
             )
         )
-        r1 = pin_sheet("Device:R", rx, ry, 0, "1")
-        r2 = pin_sheet("Device:R", rx, ry, 0, "2")
+        r_top = pin_sheet("Device:R", rx, ry, 0, "1")
+        r_bot = pin_sheet("Device:R", rx, ry, 0, "2")
 
         tx, ty = sym_pos(q_x, row_y)
         sch.add(
             place(
                 "Transistor_BJT:Q_NPN_EBC",
                 f"Q{row + 1}",
-                "PN2222A",
+                "2N2222",
                 tx,
                 ty,
                 footprint="Package_TO_SOT_THT:TO-92_Inline",
             )
         )
-        # Q_NPN_EBC: 1=E, 2=B, 3=C — emitter pin graphic extends below anchor
+        # Q_NPN_EBC: 1=E, 2=B, 3=C — emitter extends DOWN, collector UP.
         e = sch.pin_connect("Transistor_BJT:Q_NPN_EBC", tx, ty, 0, "1")
         b = pin_sheet("Transistor_BJT:Q_NPN_EBC", tx, ty, 0, "2")
         c = pin_sheet("Transistor_BJT:Q_NPN_EBC", tx, ty, 0, "3")
-        emitter_xs.append(e[0])
 
         ap = ar_pin(ROW_SIGS[row])
-        sch.route([ap, (r1[0], ap[1]), r1, r2, b])
-        sch.junction(*r2)
+        # Arduino D2/D3 -> top of 1k -> (through resistor) -> bottom -> transistor base.
+        sch.route([ap, (rx, ap[1]), r_top])
+        sch.route([r_bot, (rx, b[1]), b])
         sch.junction(*b)
+        # Collector -> row cathode bus (routes up/right, away from the emitter).
         sch.route([c, (row_bus_x, c[1]), (row_bus_x, row_bus_y)])
         sch.junction(row_bus_x, row_bus_y)
-        sch.route([e, (e[0], gnd_rail_y)])
-        sch.junction(e[0], gnd_rail_y)
-
-    # Shared GND rail for all emitter drops — tie to GND power symbol
-    rail_left = snap(min(emitter_xs))
-    sch.wire(rail_left, gnd_rail_y, gnd[0], gnd_rail_y)
-    sch.junction(gnd[0], gnd_rail_y)
-    sch.junction(*gnd)
+        # Emitter -> its own GND symbol placed directly below (no crossing wires).
+        eg_x, eg_y = sym_pos(e[0], row_y + 15.0)
+        sch.add(place("power:GND", f"#PWR0{row + 3}", "GND", eg_x, eg_y))
+        eg = pin_sheet("power:GND", eg_x, eg_y, 0, "1")
+        sch.route([e, (e[0], eg[1]), eg])
 
     # Documentation
-    sch.text("Real-time Music Visualizer (8x6 LED EQ)", 25, 15, 3.81)
-    sch.text("Python mic -> FFT -> 8 log-spaced bands -> serial @ 30Hz", 25, 21, 1.78)
-    sch.text("Arduino multiplexes 6 rows @ ~200Hz; 74HC595 drives 8 columns", 25, 27, 1.78)
-    sch.text("J1: D2-D7=rows  D10=LATCH  D11=DATA  D12=CLK  +5V/GND", 25, 33, 1.78)
+    sch.text("Music Visualizer - 2x3 LED Matrix", 25, 15, 3.81)
+    sch.text("Laptop plays MP3, streams volume level (0-6) over serial", 25, 21, 1.78)
+    sch.text("Arduino multiplexes 2 rows @ ~250Hz; 74HC595 drives 3 columns", 25, 27, 1.78)
+    sch.text("J1: D2/D3=row bases  D10=DATA  D11=LATCH  D12=CLK  +5V/GND", 25, 33, 1.78)
 
     lib_symbols = "\n".join(indent_block(lib_symbol_block(lib_id), 2) for lib_id in LIB_MAP)
 
     return f"""(kicad_sch
 \t(version 20250114)
 \t(generator "cursor-schematic-gen")
-\t(generator_version "4.3")
+\t(generator_version "5.0")
 \t(uuid "{ROOT_UUID}")
-\t(paper "A2")
+\t(paper "A3")
 \t(title_block
-\t\t(title "Spectrum Analyzer LED Matrix")
-\t\t(date "2026-06-29")
-\t\t(rev "1.0")
-\t\t(comment 1 "Real-time music visualizer - 8x6 LED equalizer")
-\t\t(comment 2 "Python FFT -> 8 bands -> Arduino serial @ 30Hz")
-\t\t(comment 3 "74HC595 column driver + PN2222 row sinks")
-\t\t(comment 4 "D2-D7 rows | D10 LATCH D11 DATA D12 CLK")
+\t\t(title "LED Matrix Music Visualizer (2x3)")
+\t\t(date "2026-07-07")
+\t\t(rev "2.0")
+\t\t(comment 1 "6-LED (2 row x 3 col) matrix music visualizer")
+\t\t(comment 2 "Laptop streams volume level 0-6 over serial")
+\t\t(comment 3 "74HC595 drives 3 columns (Q1-Q3); 2x 2N2222 row sinks")
+\t\t(comment 4 "D10 DATA | D11 LATCH | D12 CLK | D2/D3 row bases")
 \t)
 \t(lib_symbols
 {lib_symbols}
@@ -586,25 +599,69 @@ def verify_netlist(sch_path: Path) -> bool:
     if not net_path.exists():
         return False
     text = net_path.read_text()
+    # (ref, pin, expected net) — verifies the wiring matches README / music_visualizer.ino
     checks = [
-        ('(ref "J1")', '"7"', "/LATCH"),
-        ('(ref "J1")', '"8"', "/DATA"),
-        ('(ref "J1")', '"9"', "/CLK"),
-        ('(ref "Q1")', '"3"', "/ROW1"),
-        ('(ref "Q1")', '"1"', "GND"),
-        ('(ref "U1")', '"15"', "/C1"),
+        ("J1", "3", "/DATA"),    # Arduino D10 -> 74HC595 SER
+        ("J1", "4", "/LATCH"),   # Arduino D11 -> 74HC595 RCLK
+        ("J1", "5", "/CLK"),     # Arduino D12 -> 74HC595 SRCLK
+        ("U1", "14", "/DATA"),   # SER
+        ("U1", "12", "/LATCH"),  # RCLK
+        ("U1", "11", "/CLK"),    # SRCLK
+        ("Q1", "3", "/ROW1"),    # Q1 collector -> row 1 cathodes
+        ("Q2", "3", "/ROW2"),    # Q2 collector -> row 2 cathodes
+        ("Q1", "1", "GND"),      # emitter -> GND
+        ("Q2", "1", "GND"),
+        # Column resistors bridge each Q output to its column bus (LED anodes)
+        ("R1", "2", "/C1"),      # R1 -> column 1
+        ("R2", "2", "/C2"),      # R2 -> column 2
+        ("R3", "2", "/C3"),      # R3 -> column 3
+        # LED matrix: anode -> column bus, cathode -> row bus
+        ("LED1", "2", "/C1"), ("LED1", "1", "/ROW1"),
+        ("LED2", "2", "/C2"), ("LED2", "1", "/ROW1"),
+        ("LED3", "2", "/C3"), ("LED3", "1", "/ROW1"),
+        ("LED4", "2", "/C1"), ("LED4", "1", "/ROW2"),
+        ("LED5", "2", "/C2"), ("LED5", "1", "/ROW2"),
+        ("LED6", "2", "/C3"), ("LED6", "1", "/ROW2"),
+        ("U1", "16", "+5V"),     # VCC
+        ("U1", "10", "+5V"),     # SRCLR held high
+        ("U1", "8", "GND"),      # GND
+        ("U1", "13", "GND"),     # OE held low
     ]
     blocks = re.split(r"\n\t\t\(net", text)[1:]
-    for ref, pin, expect in checks:
-        found = False
+    node_re = re.compile(r'\(node\s+\(ref "([^"]+)"\)\s*\(pin "([^"]+)"')
+
+    def net_of(ref: str, pin: str) -> str | None:
         for b in blocks:
-            if ref in b and f'(pin {pin}' in b:
-                name = re.search(r'\(name "([^"]*)"\)', b)
-                if name and name.group(1) == expect:
-                    found = True
-                    break
-        if not found:
-            print(f"Netlist check failed: {ref} pin {pin} not on {expect}", file=sys.stderr)
+            name = re.search(r'\(name "([^"]*)"\)', b)
+            for r, p in node_re.findall(b):
+                if r == ref and p == pin:
+                    return name.group(1) if name else None
+        return None
+
+    for ref, pin, expect in checks:
+        actual = net_of(ref, pin)
+        if actual != expect:
+            print(f"Netlist check failed: {ref} pin {pin} on {actual!r}, expected {expect!r}", file=sys.stderr)
+            return False
+
+    # Each column resistor's input pin must share the corresponding 74HC595 Q output net.
+    pairs = [(("R1", "1"), ("U1", "1")), (("R2", "1"), ("U1", "2")), (("R3", "1"), ("U1", "3"))]
+    # Each base resistor's input pin must share the Arduino row-drive net.
+    pairs += [(("R4", "1"), ("J1", "1")), (("R5", "1"), ("J1", "2"))]
+    # Each base resistor's output pin must reach the matching transistor base.
+    pairs += [(("R4", "2"), ("Q1", "2")), (("R5", "2"), ("Q2", "2"))]
+    for (ra, pa), (rb, pb) in pairs:
+        na, nb = net_of(ra, pa), net_of(rb, pb)
+        if na is None or na != nb:
+            print(f"Netlist check failed: {ra}.{pa} ({na!r}) not tied to {rb}.{pb} ({nb!r})", file=sys.stderr)
+            return False
+
+    # Every resistor must be in series: its two pins must be on DIFFERENT nets.
+    refs = sorted(set(re.findall(r'\(ref "(R\d+)"\)', text)))
+    for r in refs:
+        n1, n2 = net_of(r, "1"), net_of(r, "2")
+        if n1 is None or n2 is None or n1 == n2:
+            print(f"Netlist check failed: resistor {r} is shorted (pin1={n1!r}, pin2={n2!r})", file=sys.stderr)
             return False
     return True
 
@@ -614,13 +671,7 @@ if __name__ == "__main__":
     print(f"Wrote {OUT}")
     ok = verify_netlist(OUT)
     print(f"Netlist checks: {'PASS' if ok else 'FAIL'}")
-    errors, warnings = run_erc_report(OUT, ERC_OUT)
-    print(f"ERC: {errors} errors, {warnings} warnings -> {ERC_OUT}")
-    if KICAD_CLI.exists():
-        subprocess.run(
-            [str(KICAD_CLI), "sch", "erc", str(OUT), "--format", "report", "--units", "mils", "--output", str(ERC_RPT)],
-            capture_output=True,
-        )
-        print(f"ERC (mils): {errors} errors, {warnings} warnings -> {ERC_RPT}")
-    if errors > 0:
+    errors, warnings = run_erc_report(OUT, ERC_RPT)
+    print(f"ERC: {errors} errors, {warnings} warnings -> {ERC_RPT}")
+    if errors > 0 or not ok:
         sys.exit(1)

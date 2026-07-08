@@ -1,13 +1,9 @@
-ERC report (2026-06-29T13:15:13, Encoding UTF8)
+ERC report (2026-07-07T17:01:13, Encoding UTF8)
 Report includes: Errors, Warnings
 
 ***** Sheet /
-[label_multiple_wires]: Label connects more than one wire at 1346200, 546100
-    ; warning
-    @(5300 mils, 2150 mils): Label 'CLK'
-    @(6300 mils, 3050 mils): Wire, length 1769 mils
 
- ** ERC messages: 1  Errors 0  Warnings 1
+ ** ERC messages: 0  Errors 0  Warnings 0
 
  ** Ignored checks:
     - Global label only appears once in the schematic

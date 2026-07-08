@@ -2,19 +2,19 @@
 <export version="E">
   <design>
     <source>/Users/vinayb/Repos/kicad-schema-musiceq/spectrum_analyzer.kicad_sch</source>
-    <date>2026-06-29T11:01:31</date>
+    <date>2026-07-07T17:01:27</date>
     <tool>Eeschema 10.0.4</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
-        <title>Spectrum Analyzer LED Matrix</title>
+        <title>LED Matrix Music Visualizer (2x3)</title>
         <company/>
-        <rev>1.0</rev>
-        <date>2026-06-29</date>
+        <rev>2.0</rev>
+        <date>2026-07-07</date>
         <source>spectrum_analyzer.kicad_sch</source>
-        <comment number="1" value="8x6 LED matrix music visualizer"/>
-        <comment number="2" value="Arduino Uno + 74HC595 + PN2222 row drivers"/>
-        <comment number="3" value="Mic FFT -&gt; 8 frequency bands -&gt; bar heights"/>
-        <comment number="4" value="Columns: shift register | Rows: transistor sink"/>
+        <comment number="1" value="6-LED (2 row x 3 col) matrix music visualizer"/>
+        <comment number="2" value="Laptop streams volume level 0-6 over serial"/>
+        <comment number="3" value="74HC595 drives 3 columns (Q1-Q3); 2x 2N2222 row sinks"/>
+        <comment number="4" value="D10 DATA | D11 LATCH | D12 CLK | D2/D3 row bases"/>
         <comment number="5" value=""/>
         <comment number="6" value=""/>
         <comment number="7" value=""/>
@@ -26,20 +26,20 @@
   <components>
     <comp ref="J1">
       <value>Arduino_Uno</value>
-      <footprint>Connector_PinHeader_2.54mm:PinHeader_1x11_P2.54mm_Vertical</footprint>
+      <footprint>Connector_PinHeader_2.54mm:PinHeader_1x07_P2.54mm_Vertical</footprint>
       <description>Placed J1</description>
       <fields>
-        <field name="Footprint">Connector_PinHeader_2.54mm:PinHeader_1x11_P2.54mm_Vertical</field>
+        <field name="Footprint">Connector_PinHeader_2.54mm:PinHeader_1x07_P2.54mm_Vertical</field>
         <field name="Datasheet"/>
         <field name="Description">Placed J1</field>
       </fields>
-      <libsource lib="Connector_Generic" part="Conn_01x11" description="Generic connector, single row, 01x11, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <libsource lib="Connector_Generic" part="Conn_01x07" description="Generic connector, single row, 01x07, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
       <property name="Sheetname" value="spectrum_analyzer"/>
       <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
       <property name="ki_keywords" value="connector"/>
       <property name="ki_fp_filters" value="Connector*:*_1x??_*"/>
       <sheetpath names="/" tstamps="/"/>
-      <tstamps>528b510d-0032-439e-869e-61e808def71e</tstamps>
+      <tstamps>b5dd4da4-55bf-4f26-86f6-e7c49e002103</tstamps>
       <units>
         <unit name="A">
           <pins>
@@ -50,10 +50,6 @@
             <pin num="5"/>
             <pin num="6"/>
             <pin num="7"/>
-            <pin num="8"/>
-            <pin num="9"/>
-            <pin num="10"/>
-            <pin num="11"/>
           </pins>
         </unit>
       </units>
@@ -73,7 +69,7 @@
       <property name="ki_keywords" value="LED diode"/>
       <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
       <sheetpath names="/" tstamps="/"/>
-      <tstamps>7d43e5af-7b71-4202-9b53-14c824714582</tstamps>
+      <tstamps>8135df0b-8fdf-42ac-800b-4c3cd1717ba4</tstamps>
       <units>
         <unit name="A">
           <pins>
@@ -98,7 +94,7 @@
       <property name="ki_keywords" value="LED diode"/>
       <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
       <sheetpath names="/" tstamps="/"/>
-      <tstamps>38896f1a-b096-4e58-97b5-1cb22f9ff253</tstamps>
+      <tstamps>3227b2f0-e9b2-4d9e-ae0b-9e19cbbe21c1</tstamps>
       <units>
         <unit name="A">
           <pins>
@@ -123,7 +119,7 @@
       <property name="ki_keywords" value="LED diode"/>
       <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
       <sheetpath names="/" tstamps="/"/>
-      <tstamps>9a0a68d3-5032-4c8d-809b-69bf7c875d4f</tstamps>
+      <tstamps>586b8079-6467-4fb1-954a-bb6054a99c10</tstamps>
       <units>
         <unit name="A">
           <pins>
@@ -148,7 +144,7 @@
       <property name="ki_keywords" value="LED diode"/>
       <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
       <sheetpath names="/" tstamps="/"/>
-      <tstamps>52906a8c-154b-484c-b639-9e116a2ac9f0</tstamps>
+      <tstamps>a892c545-9e44-4bfe-ae68-9080433bcd47</tstamps>
       <units>
         <unit name="A">
           <pins>
@@ -173,7 +169,7 @@
       <property name="ki_keywords" value="LED diode"/>
       <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
       <sheetpath names="/" tstamps="/"/>
-      <tstamps>ada82396-18d6-4875-b6fd-81b7082109d8</tstamps>
+      <tstamps>540ed863-631f-417a-bf2c-b1af4d4f3a64</tstamps>
       <units>
         <unit name="A">
           <pins>
@@ -198,1057 +194,7 @@
       <property name="ki_keywords" value="LED diode"/>
       <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
       <sheetpath names="/" tstamps="/"/>
-      <tstamps>eb526552-654a-4f18-ad1b-806035223d46</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="LED7">
-      <value>LED</value>
-      <footprint>LED_THT:LED_D5.0mm</footprint>
-      <description>Placed LED7</description>
-      <fields>
-        <field name="Footprint">LED_THT:LED_D5.0mm</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed LED7</field>
-      </fields>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="LED diode"/>
-      <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>a02db66e-1e76-4874-b95d-f5cc147b0ab7</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="LED8">
-      <value>LED</value>
-      <footprint>LED_THT:LED_D5.0mm</footprint>
-      <description>Placed LED8</description>
-      <fields>
-        <field name="Footprint">LED_THT:LED_D5.0mm</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed LED8</field>
-      </fields>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="LED diode"/>
-      <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>c53e2776-5366-45ed-99dd-9a1c503248e3</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="LED9">
-      <value>LED</value>
-      <footprint>LED_THT:LED_D5.0mm</footprint>
-      <description>Placed LED9</description>
-      <fields>
-        <field name="Footprint">LED_THT:LED_D5.0mm</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed LED9</field>
-      </fields>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="LED diode"/>
-      <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>addb5bd3-5594-4218-8aa2-1c9435b33ab6</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="LED10">
-      <value>LED</value>
-      <footprint>LED_THT:LED_D5.0mm</footprint>
-      <description>Placed LED10</description>
-      <fields>
-        <field name="Footprint">LED_THT:LED_D5.0mm</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed LED10</field>
-      </fields>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="LED diode"/>
-      <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>144a6c46-5b8b-4c16-9678-d68ecdecc8ad</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="LED11">
-      <value>LED</value>
-      <footprint>LED_THT:LED_D5.0mm</footprint>
-      <description>Placed LED11</description>
-      <fields>
-        <field name="Footprint">LED_THT:LED_D5.0mm</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed LED11</field>
-      </fields>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="LED diode"/>
-      <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>3b35bfa2-7265-415e-8df6-c18c33e1d181</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="LED12">
-      <value>LED</value>
-      <footprint>LED_THT:LED_D5.0mm</footprint>
-      <description>Placed LED12</description>
-      <fields>
-        <field name="Footprint">LED_THT:LED_D5.0mm</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed LED12</field>
-      </fields>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="LED diode"/>
-      <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>9ad088bc-6b82-4d07-9278-bb310ef3d18b</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="LED13">
-      <value>LED</value>
-      <footprint>LED_THT:LED_D5.0mm</footprint>
-      <description>Placed LED13</description>
-      <fields>
-        <field name="Footprint">LED_THT:LED_D5.0mm</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed LED13</field>
-      </fields>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="LED diode"/>
-      <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>55c020e0-8018-4362-a7de-509819f2a254</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="LED14">
-      <value>LED</value>
-      <footprint>LED_THT:LED_D5.0mm</footprint>
-      <description>Placed LED14</description>
-      <fields>
-        <field name="Footprint">LED_THT:LED_D5.0mm</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed LED14</field>
-      </fields>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="LED diode"/>
-      <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>749a0064-442e-4801-98a0-e451e75c4016</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="LED15">
-      <value>LED</value>
-      <footprint>LED_THT:LED_D5.0mm</footprint>
-      <description>Placed LED15</description>
-      <fields>
-        <field name="Footprint">LED_THT:LED_D5.0mm</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed LED15</field>
-      </fields>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="LED diode"/>
-      <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>94cf0d65-b2aa-4318-ac85-233e3ba6aaa5</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="LED16">
-      <value>LED</value>
-      <footprint>LED_THT:LED_D5.0mm</footprint>
-      <description>Placed LED16</description>
-      <fields>
-        <field name="Footprint">LED_THT:LED_D5.0mm</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed LED16</field>
-      </fields>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="LED diode"/>
-      <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>09cc16ec-e3ad-4a31-8e87-e2fd5aad9405</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="LED17">
-      <value>LED</value>
-      <footprint>LED_THT:LED_D5.0mm</footprint>
-      <description>Placed LED17</description>
-      <fields>
-        <field name="Footprint">LED_THT:LED_D5.0mm</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed LED17</field>
-      </fields>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="LED diode"/>
-      <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>02b743c2-ad5f-4412-99e0-57d64608c3de</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="LED18">
-      <value>LED</value>
-      <footprint>LED_THT:LED_D5.0mm</footprint>
-      <description>Placed LED18</description>
-      <fields>
-        <field name="Footprint">LED_THT:LED_D5.0mm</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed LED18</field>
-      </fields>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="LED diode"/>
-      <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>05afad2b-6c39-449b-9c3e-b345548b5e16</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="LED19">
-      <value>LED</value>
-      <footprint>LED_THT:LED_D5.0mm</footprint>
-      <description>Placed LED19</description>
-      <fields>
-        <field name="Footprint">LED_THT:LED_D5.0mm</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed LED19</field>
-      </fields>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="LED diode"/>
-      <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>336551aa-f801-401d-95f4-c76bb6e26097</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="LED20">
-      <value>LED</value>
-      <footprint>LED_THT:LED_D5.0mm</footprint>
-      <description>Placed LED20</description>
-      <fields>
-        <field name="Footprint">LED_THT:LED_D5.0mm</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed LED20</field>
-      </fields>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="LED diode"/>
-      <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>35dd0262-cc49-4b57-9585-aa2b610aa295</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="LED21">
-      <value>LED</value>
-      <footprint>LED_THT:LED_D5.0mm</footprint>
-      <description>Placed LED21</description>
-      <fields>
-        <field name="Footprint">LED_THT:LED_D5.0mm</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed LED21</field>
-      </fields>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="LED diode"/>
-      <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>45333268-a340-4508-8590-3b2aa6f7afb6</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="LED22">
-      <value>LED</value>
-      <footprint>LED_THT:LED_D5.0mm</footprint>
-      <description>Placed LED22</description>
-      <fields>
-        <field name="Footprint">LED_THT:LED_D5.0mm</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed LED22</field>
-      </fields>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="LED diode"/>
-      <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>f0a69876-ba03-435b-8936-c089c251d160</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="LED23">
-      <value>LED</value>
-      <footprint>LED_THT:LED_D5.0mm</footprint>
-      <description>Placed LED23</description>
-      <fields>
-        <field name="Footprint">LED_THT:LED_D5.0mm</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed LED23</field>
-      </fields>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="LED diode"/>
-      <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>bceaa976-bf37-49a2-b00b-3b8b16b39dcd</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="LED24">
-      <value>LED</value>
-      <footprint>LED_THT:LED_D5.0mm</footprint>
-      <description>Placed LED24</description>
-      <fields>
-        <field name="Footprint">LED_THT:LED_D5.0mm</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed LED24</field>
-      </fields>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="LED diode"/>
-      <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>c1ec5822-468f-410f-ba9d-276fc087f230</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="LED25">
-      <value>LED</value>
-      <footprint>LED_THT:LED_D5.0mm</footprint>
-      <description>Placed LED25</description>
-      <fields>
-        <field name="Footprint">LED_THT:LED_D5.0mm</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed LED25</field>
-      </fields>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="LED diode"/>
-      <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>2d723506-0aeb-476b-b700-4d3e9971d768</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="LED26">
-      <value>LED</value>
-      <footprint>LED_THT:LED_D5.0mm</footprint>
-      <description>Placed LED26</description>
-      <fields>
-        <field name="Footprint">LED_THT:LED_D5.0mm</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed LED26</field>
-      </fields>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="LED diode"/>
-      <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>fb568528-575d-4d03-bdc8-c8b02f65d675</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="LED27">
-      <value>LED</value>
-      <footprint>LED_THT:LED_D5.0mm</footprint>
-      <description>Placed LED27</description>
-      <fields>
-        <field name="Footprint">LED_THT:LED_D5.0mm</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed LED27</field>
-      </fields>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="LED diode"/>
-      <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>32a48c49-f13f-43fd-b70d-f828cc8852b4</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="LED28">
-      <value>LED</value>
-      <footprint>LED_THT:LED_D5.0mm</footprint>
-      <description>Placed LED28</description>
-      <fields>
-        <field name="Footprint">LED_THT:LED_D5.0mm</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed LED28</field>
-      </fields>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="LED diode"/>
-      <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>fbcfff89-af2a-4a2b-b161-50965c824108</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="LED29">
-      <value>LED</value>
-      <footprint>LED_THT:LED_D5.0mm</footprint>
-      <description>Placed LED29</description>
-      <fields>
-        <field name="Footprint">LED_THT:LED_D5.0mm</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed LED29</field>
-      </fields>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="LED diode"/>
-      <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>dd9a33c1-0927-47c6-a00c-fd02ed3c3ede</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="LED30">
-      <value>LED</value>
-      <footprint>LED_THT:LED_D5.0mm</footprint>
-      <description>Placed LED30</description>
-      <fields>
-        <field name="Footprint">LED_THT:LED_D5.0mm</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed LED30</field>
-      </fields>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="LED diode"/>
-      <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>6d865ee7-eb3b-46d8-ba19-df4722b997b6</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="LED31">
-      <value>LED</value>
-      <footprint>LED_THT:LED_D5.0mm</footprint>
-      <description>Placed LED31</description>
-      <fields>
-        <field name="Footprint">LED_THT:LED_D5.0mm</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed LED31</field>
-      </fields>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="LED diode"/>
-      <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>1c9a1793-aac0-44bc-8de8-bbdab1ba63e3</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="LED32">
-      <value>LED</value>
-      <footprint>LED_THT:LED_D5.0mm</footprint>
-      <description>Placed LED32</description>
-      <fields>
-        <field name="Footprint">LED_THT:LED_D5.0mm</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed LED32</field>
-      </fields>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="LED diode"/>
-      <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>75922a31-9611-4542-a74c-320e1df0af5f</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="LED33">
-      <value>LED</value>
-      <footprint>LED_THT:LED_D5.0mm</footprint>
-      <description>Placed LED33</description>
-      <fields>
-        <field name="Footprint">LED_THT:LED_D5.0mm</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed LED33</field>
-      </fields>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="LED diode"/>
-      <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>0ce52289-3359-4422-8cc7-fd22c2d61be2</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="LED34">
-      <value>LED</value>
-      <footprint>LED_THT:LED_D5.0mm</footprint>
-      <description>Placed LED34</description>
-      <fields>
-        <field name="Footprint">LED_THT:LED_D5.0mm</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed LED34</field>
-      </fields>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="LED diode"/>
-      <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>38d38d71-d0dd-4aa0-b5e6-cdb84a0ece17</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="LED35">
-      <value>LED</value>
-      <footprint>LED_THT:LED_D5.0mm</footprint>
-      <description>Placed LED35</description>
-      <fields>
-        <field name="Footprint">LED_THT:LED_D5.0mm</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed LED35</field>
-      </fields>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="LED diode"/>
-      <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>0e0608c4-651c-43ca-9d11-f0ed4483ecda</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="LED36">
-      <value>LED</value>
-      <footprint>LED_THT:LED_D5.0mm</footprint>
-      <description>Placed LED36</description>
-      <fields>
-        <field name="Footprint">LED_THT:LED_D5.0mm</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed LED36</field>
-      </fields>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="LED diode"/>
-      <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>c863404f-79f5-4e57-a8c0-f14d7c8698dd</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="LED37">
-      <value>LED</value>
-      <footprint>LED_THT:LED_D5.0mm</footprint>
-      <description>Placed LED37</description>
-      <fields>
-        <field name="Footprint">LED_THT:LED_D5.0mm</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed LED37</field>
-      </fields>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="LED diode"/>
-      <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>a0eb1ee9-51c7-4c60-a65e-65f372fcd18d</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="LED38">
-      <value>LED</value>
-      <footprint>LED_THT:LED_D5.0mm</footprint>
-      <description>Placed LED38</description>
-      <fields>
-        <field name="Footprint">LED_THT:LED_D5.0mm</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed LED38</field>
-      </fields>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="LED diode"/>
-      <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>7f6687c2-b024-4f73-8ab7-10404780cbc7</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="LED39">
-      <value>LED</value>
-      <footprint>LED_THT:LED_D5.0mm</footprint>
-      <description>Placed LED39</description>
-      <fields>
-        <field name="Footprint">LED_THT:LED_D5.0mm</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed LED39</field>
-      </fields>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="LED diode"/>
-      <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>37692347-5e4c-455b-874c-9fc84f58b4f5</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="LED40">
-      <value>LED</value>
-      <footprint>LED_THT:LED_D5.0mm</footprint>
-      <description>Placed LED40</description>
-      <fields>
-        <field name="Footprint">LED_THT:LED_D5.0mm</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed LED40</field>
-      </fields>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="LED diode"/>
-      <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>999634ee-0c95-4193-be9b-e6d4f412e78d</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="LED41">
-      <value>LED</value>
-      <footprint>LED_THT:LED_D5.0mm</footprint>
-      <description>Placed LED41</description>
-      <fields>
-        <field name="Footprint">LED_THT:LED_D5.0mm</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed LED41</field>
-      </fields>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="LED diode"/>
-      <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>b4f920f8-e2d8-40f7-9ae3-26ef75c799d8</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="LED42">
-      <value>LED</value>
-      <footprint>LED_THT:LED_D5.0mm</footprint>
-      <description>Placed LED42</description>
-      <fields>
-        <field name="Footprint">LED_THT:LED_D5.0mm</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed LED42</field>
-      </fields>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="LED diode"/>
-      <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>7e5d8079-b1f7-47b4-9921-6cad9b5eff19</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="LED43">
-      <value>LED</value>
-      <footprint>LED_THT:LED_D5.0mm</footprint>
-      <description>Placed LED43</description>
-      <fields>
-        <field name="Footprint">LED_THT:LED_D5.0mm</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed LED43</field>
-      </fields>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="LED diode"/>
-      <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>cb3c21ec-5f8f-4fd8-bed0-cc98964efaa3</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="LED44">
-      <value>LED</value>
-      <footprint>LED_THT:LED_D5.0mm</footprint>
-      <description>Placed LED44</description>
-      <fields>
-        <field name="Footprint">LED_THT:LED_D5.0mm</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed LED44</field>
-      </fields>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="LED diode"/>
-      <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>479ce6e2-3c1f-44af-b606-85e47866df61</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="LED45">
-      <value>LED</value>
-      <footprint>LED_THT:LED_D5.0mm</footprint>
-      <description>Placed LED45</description>
-      <fields>
-        <field name="Footprint">LED_THT:LED_D5.0mm</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed LED45</field>
-      </fields>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="LED diode"/>
-      <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>4ec44b8b-2613-4f9d-b4a5-78767e5db052</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="LED46">
-      <value>LED</value>
-      <footprint>LED_THT:LED_D5.0mm</footprint>
-      <description>Placed LED46</description>
-      <fields>
-        <field name="Footprint">LED_THT:LED_D5.0mm</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed LED46</field>
-      </fields>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="LED diode"/>
-      <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>931479da-bebe-4870-9cbb-4b512fcb8c41</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="LED47">
-      <value>LED</value>
-      <footprint>LED_THT:LED_D5.0mm</footprint>
-      <description>Placed LED47</description>
-      <fields>
-        <field name="Footprint">LED_THT:LED_D5.0mm</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed LED47</field>
-      </fields>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="LED diode"/>
-      <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>b2872b97-7d35-4d86-821d-26f7775d28e3</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="LED48">
-      <value>LED</value>
-      <footprint>LED_THT:LED_D5.0mm</footprint>
-      <description>Placed LED48</description>
-      <fields>
-        <field name="Footprint">LED_THT:LED_D5.0mm</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed LED48</field>
-      </fields>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="LED diode"/>
-      <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>507dbc97-a901-4646-847a-483adaaf1fb5</tstamps>
+      <tstamps>9de293e0-d03d-4171-acf9-b43dc33207fb</tstamps>
       <units>
         <unit name="A">
           <pins>
@@ -1259,7 +205,7 @@
       </units>
     </comp>
     <comp ref="Q1">
-      <value>PN2222A</value>
+      <value>2N2222</value>
       <footprint>Package_TO_SOT_THT:TO-92_Inline</footprint>
       <description>Placed Q1</description>
       <fields>
@@ -1267,21 +213,24 @@
         <field name="Datasheet"/>
         <field name="Description">Placed Q1</field>
       </fields>
-      <libsource lib="Transistor_BJT" part="PN2222A" description="1A Ic, 40V Vce, NPN Transistor, General Purpose Transistor, TO-92"/>
+      <libsource lib="Transistor_BJT" part="Q_NPN_EBC" description="NPN transistor, emitter/base/collector"/>
       <property name="Sheetname" value="spectrum_analyzer"/>
       <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="NPN Transistor"/>
-      <property name="ki_fp_filters" value="TO?92*"/>
+      <property name="ki_keywords" value="BJT"/>
       <sheetpath names="/" tstamps="/"/>
-      <tstamps>dabac619-f463-4904-8332-473ba557f815</tstamps>
+      <tstamps>f5b64016-019c-4906-a8f8-a4b07183e51c</tstamps>
       <units>
         <unit name="A">
-          <pins/>
+          <pins>
+            <pin num="2"/>
+            <pin num="3"/>
+            <pin num="1"/>
+          </pins>
         </unit>
       </units>
     </comp>
     <comp ref="Q2">
-      <value>PN2222A</value>
+      <value>2N2222</value>
       <footprint>Package_TO_SOT_THT:TO-92_Inline</footprint>
       <description>Placed Q2</description>
       <fields>
@@ -1289,113 +238,28 @@
         <field name="Datasheet"/>
         <field name="Description">Placed Q2</field>
       </fields>
-      <libsource lib="Transistor_BJT" part="PN2222A" description="1A Ic, 40V Vce, NPN Transistor, General Purpose Transistor, TO-92"/>
+      <libsource lib="Transistor_BJT" part="Q_NPN_EBC" description="NPN transistor, emitter/base/collector"/>
       <property name="Sheetname" value="spectrum_analyzer"/>
       <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="NPN Transistor"/>
-      <property name="ki_fp_filters" value="TO?92*"/>
+      <property name="ki_keywords" value="BJT"/>
       <sheetpath names="/" tstamps="/"/>
-      <tstamps>8d952944-a415-4c8b-a423-778f22f7bbbc</tstamps>
+      <tstamps>5b979fc2-7718-4751-b525-ea8b88e406bf</tstamps>
       <units>
         <unit name="A">
-          <pins/>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="Q3">
-      <value>PN2222A</value>
-      <footprint>Package_TO_SOT_THT:TO-92_Inline</footprint>
-      <description>Placed Q3</description>
-      <fields>
-        <field name="Footprint">Package_TO_SOT_THT:TO-92_Inline</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed Q3</field>
-      </fields>
-      <libsource lib="Transistor_BJT" part="PN2222A" description="1A Ic, 40V Vce, NPN Transistor, General Purpose Transistor, TO-92"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="NPN Transistor"/>
-      <property name="ki_fp_filters" value="TO?92*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>0190646b-062f-4681-8cc1-dab8097de505</tstamps>
-      <units>
-        <unit name="A">
-          <pins/>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="Q4">
-      <value>PN2222A</value>
-      <footprint>Package_TO_SOT_THT:TO-92_Inline</footprint>
-      <description>Placed Q4</description>
-      <fields>
-        <field name="Footprint">Package_TO_SOT_THT:TO-92_Inline</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed Q4</field>
-      </fields>
-      <libsource lib="Transistor_BJT" part="PN2222A" description="1A Ic, 40V Vce, NPN Transistor, General Purpose Transistor, TO-92"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="NPN Transistor"/>
-      <property name="ki_fp_filters" value="TO?92*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>833eee31-bb01-49ff-96c9-b8ed3793b346</tstamps>
-      <units>
-        <unit name="A">
-          <pins/>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="Q5">
-      <value>PN2222A</value>
-      <footprint>Package_TO_SOT_THT:TO-92_Inline</footprint>
-      <description>Placed Q5</description>
-      <fields>
-        <field name="Footprint">Package_TO_SOT_THT:TO-92_Inline</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed Q5</field>
-      </fields>
-      <libsource lib="Transistor_BJT" part="PN2222A" description="1A Ic, 40V Vce, NPN Transistor, General Purpose Transistor, TO-92"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="NPN Transistor"/>
-      <property name="ki_fp_filters" value="TO?92*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>d27c5762-ad9e-4c79-b7e0-6479c4dfcbdf</tstamps>
-      <units>
-        <unit name="A">
-          <pins/>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="Q6">
-      <value>PN2222A</value>
-      <footprint>Package_TO_SOT_THT:TO-92_Inline</footprint>
-      <description>Placed Q6</description>
-      <fields>
-        <field name="Footprint">Package_TO_SOT_THT:TO-92_Inline</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed Q6</field>
-      </fields>
-      <libsource lib="Transistor_BJT" part="PN2222A" description="1A Ic, 40V Vce, NPN Transistor, General Purpose Transistor, TO-92"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="NPN Transistor"/>
-      <property name="ki_fp_filters" value="TO?92*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>bc3e5eaf-19c3-40e6-be53-acfec6a9c624</tstamps>
-      <units>
-        <unit name="A">
-          <pins/>
+          <pins>
+            <pin num="2"/>
+            <pin num="3"/>
+            <pin num="1"/>
+          </pins>
         </unit>
       </units>
     </comp>
     <comp ref="R1">
       <value>220</value>
-      <footprint>Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</footprint>
+      <footprint>Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P5.08mm_Vertical</footprint>
       <description>Placed R1</description>
       <fields>
-        <field name="Footprint">Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</field>
+        <field name="Footprint">Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P5.08mm_Vertical</field>
         <field name="Datasheet"/>
         <field name="Description">Placed R1</field>
       </fields>
@@ -1405,7 +269,7 @@
       <property name="ki_keywords" value="R res resistor"/>
       <property name="ki_fp_filters" value="R_*"/>
       <sheetpath names="/" tstamps="/"/>
-      <tstamps>1bab9c39-fdbf-4ec7-98fb-6904c8a35dc6</tstamps>
+      <tstamps>a24d412a-2995-4262-b0c9-d1ef38dc97d7</tstamps>
       <units>
         <unit name="A">
           <pins>
@@ -1417,10 +281,10 @@
     </comp>
     <comp ref="R2">
       <value>220</value>
-      <footprint>Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</footprint>
+      <footprint>Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P5.08mm_Vertical</footprint>
       <description>Placed R2</description>
       <fields>
-        <field name="Footprint">Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</field>
+        <field name="Footprint">Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P5.08mm_Vertical</field>
         <field name="Datasheet"/>
         <field name="Description">Placed R2</field>
       </fields>
@@ -1430,7 +294,7 @@
       <property name="ki_keywords" value="R res resistor"/>
       <property name="ki_fp_filters" value="R_*"/>
       <sheetpath names="/" tstamps="/"/>
-      <tstamps>beaa6828-ab09-4c3a-a4a6-38e1f394f97c</tstamps>
+      <tstamps>976c666d-4122-4fe2-9137-8b131f39b071</tstamps>
       <units>
         <unit name="A">
           <pins>
@@ -1442,10 +306,10 @@
     </comp>
     <comp ref="R3">
       <value>220</value>
-      <footprint>Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</footprint>
+      <footprint>Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P5.08mm_Vertical</footprint>
       <description>Placed R3</description>
       <fields>
-        <field name="Footprint">Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</field>
+        <field name="Footprint">Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P5.08mm_Vertical</field>
         <field name="Datasheet"/>
         <field name="Description">Placed R3</field>
       </fields>
@@ -1455,7 +319,7 @@
       <property name="ki_keywords" value="R res resistor"/>
       <property name="ki_fp_filters" value="R_*"/>
       <sheetpath names="/" tstamps="/"/>
-      <tstamps>9cd448af-6272-453a-b786-bc26b8bd479c</tstamps>
+      <tstamps>fe06a5f5-bfd9-4cae-b2b3-7d2017ce7a92</tstamps>
       <units>
         <unit name="A">
           <pins>
@@ -1466,11 +330,11 @@
       </units>
     </comp>
     <comp ref="R4">
-      <value>220</value>
-      <footprint>Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</footprint>
+      <value>1k</value>
+      <footprint>Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P5.08mm_Vertical</footprint>
       <description>Placed R4</description>
       <fields>
-        <field name="Footprint">Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</field>
+        <field name="Footprint">Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P5.08mm_Vertical</field>
         <field name="Datasheet"/>
         <field name="Description">Placed R4</field>
       </fields>
@@ -1480,7 +344,7 @@
       <property name="ki_keywords" value="R res resistor"/>
       <property name="ki_fp_filters" value="R_*"/>
       <sheetpath names="/" tstamps="/"/>
-      <tstamps>a290ed96-3ee3-417e-bd66-9c6b82e9f2ef</tstamps>
+      <tstamps>4f77e51d-40f9-4077-866c-622410497188</tstamps>
       <units>
         <unit name="A">
           <pins>
@@ -1491,11 +355,11 @@
       </units>
     </comp>
     <comp ref="R5">
-      <value>220</value>
-      <footprint>Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</footprint>
+      <value>1k</value>
+      <footprint>Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P5.08mm_Vertical</footprint>
       <description>Placed R5</description>
       <fields>
-        <field name="Footprint">Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</field>
+        <field name="Footprint">Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P5.08mm_Vertical</field>
         <field name="Datasheet"/>
         <field name="Description">Placed R5</field>
       </fields>
@@ -1505,232 +369,7 @@
       <property name="ki_keywords" value="R res resistor"/>
       <property name="ki_fp_filters" value="R_*"/>
       <sheetpath names="/" tstamps="/"/>
-      <tstamps>d76505bf-bc89-4a98-9519-c673ca45b705</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="R6">
-      <value>220</value>
-      <footprint>Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</footprint>
-      <description>Placed R6</description>
-      <fields>
-        <field name="Footprint">Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed R6</field>
-      </fields>
-      <libsource lib="Device" part="R" description="Resistor"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="R res resistor"/>
-      <property name="ki_fp_filters" value="R_*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>f902846d-7cf1-47c3-9138-7fff777df0c6</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="R7">
-      <value>220</value>
-      <footprint>Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</footprint>
-      <description>Placed R7</description>
-      <fields>
-        <field name="Footprint">Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed R7</field>
-      </fields>
-      <libsource lib="Device" part="R" description="Resistor"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="R res resistor"/>
-      <property name="ki_fp_filters" value="R_*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>59976fa2-e0b5-4c70-8406-29e448203349</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="R8">
-      <value>220</value>
-      <footprint>Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</footprint>
-      <description>Placed R8</description>
-      <fields>
-        <field name="Footprint">Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed R8</field>
-      </fields>
-      <libsource lib="Device" part="R" description="Resistor"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="R res resistor"/>
-      <property name="ki_fp_filters" value="R_*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>213850f0-52e1-486e-b95f-c7405c3f6279</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="R9">
-      <value>1k</value>
-      <footprint>Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</footprint>
-      <description>Placed R9</description>
-      <fields>
-        <field name="Footprint">Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed R9</field>
-      </fields>
-      <libsource lib="Device" part="R" description="Resistor"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="R res resistor"/>
-      <property name="ki_fp_filters" value="R_*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>30e12139-c7a5-4aca-9553-e21e5d384f8d</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="R10">
-      <value>1k</value>
-      <footprint>Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</footprint>
-      <description>Placed R10</description>
-      <fields>
-        <field name="Footprint">Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed R10</field>
-      </fields>
-      <libsource lib="Device" part="R" description="Resistor"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="R res resistor"/>
-      <property name="ki_fp_filters" value="R_*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>2488f3af-ccf8-4a11-b566-3eef5eef1571</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="R11">
-      <value>1k</value>
-      <footprint>Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</footprint>
-      <description>Placed R11</description>
-      <fields>
-        <field name="Footprint">Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed R11</field>
-      </fields>
-      <libsource lib="Device" part="R" description="Resistor"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="R res resistor"/>
-      <property name="ki_fp_filters" value="R_*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>f56c2355-1b5c-401d-b3e5-645e0ca96070</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="R12">
-      <value>1k</value>
-      <footprint>Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</footprint>
-      <description>Placed R12</description>
-      <fields>
-        <field name="Footprint">Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed R12</field>
-      </fields>
-      <libsource lib="Device" part="R" description="Resistor"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="R res resistor"/>
-      <property name="ki_fp_filters" value="R_*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>0b48b858-7cd7-4085-a7e3-208fdef31993</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="R13">
-      <value>1k</value>
-      <footprint>Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</footprint>
-      <description>Placed R13</description>
-      <fields>
-        <field name="Footprint">Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed R13</field>
-      </fields>
-      <libsource lib="Device" part="R" description="Resistor"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="R res resistor"/>
-      <property name="ki_fp_filters" value="R_*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>3e273d06-b225-43a3-a9c5-eeb873989132</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="R14">
-      <value>1k</value>
-      <footprint>Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</footprint>
-      <description>Placed R14</description>
-      <fields>
-        <field name="Footprint">Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal</field>
-        <field name="Datasheet"/>
-        <field name="Description">Placed R14</field>
-      </fields>
-      <libsource lib="Device" part="R" description="Resistor"/>
-      <property name="Sheetname" value="spectrum_analyzer"/>
-      <property name="Sheetfile" value="spectrum_analyzer.kicad_sch"/>
-      <property name="ki_keywords" value="R res resistor"/>
-      <property name="ki_fp_filters" value="R_*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>30576496-ffb8-41dc-8fd5-337351f8b8ad</tstamps>
+      <tstamps>7ed37989-4be4-4399-bb4a-275e7de3bc46</tstamps>
       <units>
         <unit name="A">
           <pins>
@@ -1755,7 +394,7 @@
       <property name="ki_keywords" value="HCMOS SR 3State"/>
       <property name="ki_fp_filters" value="DIP*W7.62mm* SOIC*3.9x9.9mm*P1.27mm* TSSOP*4.4x5mm*P0.65mm* SOIC*5.3x10.2mm*P1.27mm* SOIC*7.5x10.3mm*P1.27mm*"/>
       <sheetpath names="/" tstamps="/"/>
-      <tstamps>6a634466-3446-44b0-8112-08f72dadce31</tstamps>
+      <tstamps>4bc46a08-9edc-400b-b6f1-4e7f31fab340</tstamps>
       <units>
         <unit name="A">
           <pins>
@@ -1817,17 +456,17 @@
         <pin num="16" name="VCC" type="power_in"/>
       </pins>
     </libpart>
-    <libpart lib="Connector_Generic" part="Conn_01x11">
-      <description>Generic connector, single row, 01x11, script generated (kicad-library-utils/schlib/autogen/connector/)</description>
+    <libpart lib="Connector_Generic" part="Conn_01x07">
+      <description>Generic connector, single row, 01x07, script generated (kicad-library-utils/schlib/autogen/connector/)</description>
       <footprints>
         <fp>Connector*:*_1x??_*</fp>
       </footprints>
       <fields>
         <field name="Reference">J</field>
-        <field name="Value">Conn_01x11</field>
+        <field name="Value">Conn_01x07</field>
         <field name="Footprint"/>
         <field name="Datasheet"/>
-        <field name="Description">Generic connector, single row, 01x11, script generated (kicad-library-utils/schlib/autogen/connector/)</field>
+        <field name="Description">Generic connector, single row, 01x07, script generated (kicad-library-utils/schlib/autogen/connector/)</field>
       </fields>
       <pins>
         <pin num="1" name="Pin_1" type="passive"/>
@@ -1837,10 +476,6 @@
         <pin num="5" name="Pin_5" type="passive"/>
         <pin num="6" name="Pin_6" type="passive"/>
         <pin num="7" name="Pin_7" type="passive"/>
-        <pin num="8" name="Pin_8" type="passive"/>
-        <pin num="9" name="Pin_9" type="passive"/>
-        <pin num="10" name="Pin_10" type="passive"/>
-        <pin num="11" name="Pin_11" type="passive"/>
       </pins>
     </libpart>
     <libpart lib="Device" part="LED">
@@ -1880,19 +515,22 @@
         <pin num="2" name="" type="passive"/>
       </pins>
     </libpart>
-    <libpart lib="Transistor_BJT" part="PN2222A">
-      <description>1A Ic, 40V Vce, NPN Transistor, General Purpose Transistor, TO-92</description>
-      <docs>https://www.onsemi.com/pub/Collateral/PN2222-D.PDF</docs>
-      <footprints>
-        <fp>TO?92*</fp>
-      </footprints>
+    <libpart lib="Transistor_BJT" part="Q_NPN_EBC">
+      <description>NPN transistor, emitter/base/collector</description>
       <fields>
         <field name="Reference">Q</field>
-        <field name="Value">PN2222A</field>
-        <field name="Footprint">Package_TO_SOT_THT:TO-92_Inline</field>
-        <field name="Datasheet">https://www.onsemi.com/pub/Collateral/PN2222-D.PDF</field>
-        <field name="Description">1A Ic, 40V Vce, NPN Transistor, General Purpose Transistor, TO-92</field>
+        <field name="Value">Q_NPN_EBC</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">NPN transistor, emitter/base/collector</field>
+        <field name="Sim.Device">NPN</field>
+        <field name="Sim.Pins">1=E 2=B 3=C</field>
       </fields>
+      <pins>
+        <pin num="1" name="E" type="passive"/>
+        <pin num="2" name="B" type="input"/>
+        <pin num="3" name="C" type="passive"/>
+      </pins>
     </libpart>
   </libparts>
   <libraries>
@@ -1911,201 +549,101 @@
   </libraries>
   <nets>
     <net code="1" name="+5V" class="Default">
-      <node ref="J1" pin="2" pinfunction="Pin_2_2" pintype="passive"/>
-      <node ref="U1" pin="12" pinfunction="RCLK_12" pintype="input"/>
-    </net>
-    <net code="10" name="/CLK" class="Default">
-      <node ref="J1" pin="3" pinfunction="Pin_3_3" pintype="passive"/>
-      <node ref="J1" pin="5" pinfunction="Pin_5_5" pintype="passive"/>
+      <node ref="J1" pin="6" pinfunction="Pin_6_6" pintype="passive"/>
       <node ref="U1" pin="10" pinfunction="~{SRCLR}_10" pintype="input"/>
-      <node ref="U1" pin="13" pinfunction="~{OE}_13" pintype="input"/>
+      <node ref="U1" pin="16" pinfunction="VCC_16" pintype="power_in"/>
     </net>
-    <net code="18" name="GND" class="Default">
-      <node ref="J1" pin="1" pinfunction="Pin_1_1" pintype="passive"/>
+    <net code="2" name="/C1" class="Default">
+      <node ref="LED1" pin="2" pinfunction="A_2" pintype="passive"/>
+      <node ref="LED4" pin="2" pinfunction="A_2" pintype="passive"/>
+      <node ref="R1" pin="2" pintype="passive"/>
+    </net>
+    <net code="3" name="/C2" class="Default">
+      <node ref="LED2" pin="2" pinfunction="A_2" pintype="passive"/>
+      <node ref="LED5" pin="2" pinfunction="A_2" pintype="passive"/>
+      <node ref="R2" pin="2" pintype="passive"/>
+    </net>
+    <net code="4" name="/C3" class="Default">
+      <node ref="LED3" pin="2" pinfunction="A_2" pintype="passive"/>
+      <node ref="LED6" pin="2" pinfunction="A_2" pintype="passive"/>
+      <node ref="R3" pin="2" pintype="passive"/>
+    </net>
+    <net code="5" name="/CLK" class="Default">
+      <node ref="J1" pin="5" pinfunction="Pin_5_5" pintype="passive"/>
       <node ref="U1" pin="11" pinfunction="SRCLK_11" pintype="input"/>
     </net>
-    <net code="19" name="Net-(J1-Pin_6)" class="Default">
-      <node ref="J1" pin="6" pinfunction="Pin_6_6" pintype="passive"/>
-      <node ref="R14" pin="2" pintype="passive"/>
-    </net>
-    <net code="20" name="Net-(J1-Pin_7)" class="Default">
-      <node ref="J1" pin="7" pinfunction="Pin_7_7" pintype="passive"/>
-      <node ref="R13" pin="2" pintype="passive"/>
-    </net>
-    <net code="21" name="Net-(J1-Pin_8)" class="Default">
-      <node ref="J1" pin="8" pinfunction="Pin_8_8" pintype="passive"/>
-      <node ref="R12" pin="2" pintype="passive"/>
-    </net>
-    <net code="22" name="Net-(J1-Pin_9)" class="Default">
-      <node ref="J1" pin="9" pinfunction="Pin_9_9" pintype="passive"/>
-      <node ref="R11" pin="2" pintype="passive"/>
-    </net>
-    <net code="23" name="Net-(J1-Pin_10)" class="Default">
-      <node ref="J1" pin="10" pinfunction="Pin_10_10" pintype="passive"/>
-      <node ref="R10" pin="2" pintype="passive"/>
-    </net>
-    <net code="24" name="Net-(J1-Pin_11)" class="Default">
-      <node ref="J1" pin="11" pinfunction="Pin_11_11" pintype="passive"/>
-      <node ref="R9" pin="2" pintype="passive"/>
-    </net>
-    <net code="25" name="Net-(LED1-A)" class="Default">
-      <node ref="LED1" pin="2" pinfunction="A_2" pintype="passive"/>
-      <node ref="LED10" pin="2" pinfunction="A_2" pintype="passive"/>
-      <node ref="LED11" pin="2" pinfunction="A_2" pintype="passive"/>
-      <node ref="LED12" pin="2" pinfunction="A_2" pintype="passive"/>
-      <node ref="LED13" pin="2" pinfunction="A_2" pintype="passive"/>
-      <node ref="LED14" pin="2" pinfunction="A_2" pintype="passive"/>
-      <node ref="LED15" pin="2" pinfunction="A_2" pintype="passive"/>
-      <node ref="LED16" pin="2" pinfunction="A_2" pintype="passive"/>
-      <node ref="LED17" pin="2" pinfunction="A_2" pintype="passive"/>
-      <node ref="LED18" pin="2" pinfunction="A_2" pintype="passive"/>
-      <node ref="LED19" pin="2" pinfunction="A_2" pintype="passive"/>
-      <node ref="LED2" pin="2" pinfunction="A_2" pintype="passive"/>
-      <node ref="LED20" pin="2" pinfunction="A_2" pintype="passive"/>
-      <node ref="LED21" pin="2" pinfunction="A_2" pintype="passive"/>
-      <node ref="LED22" pin="2" pinfunction="A_2" pintype="passive"/>
-      <node ref="LED23" pin="2" pinfunction="A_2" pintype="passive"/>
-      <node ref="LED24" pin="2" pinfunction="A_2" pintype="passive"/>
-      <node ref="LED25" pin="2" pinfunction="A_2" pintype="passive"/>
-      <node ref="LED26" pin="2" pinfunction="A_2" pintype="passive"/>
-      <node ref="LED27" pin="2" pinfunction="A_2" pintype="passive"/>
-      <node ref="LED28" pin="2" pinfunction="A_2" pintype="passive"/>
-      <node ref="LED29" pin="2" pinfunction="A_2" pintype="passive"/>
-      <node ref="LED3" pin="2" pinfunction="A_2" pintype="passive"/>
-      <node ref="LED30" pin="2" pinfunction="A_2" pintype="passive"/>
-      <node ref="LED31" pin="2" pinfunction="A_2" pintype="passive"/>
-      <node ref="LED32" pin="2" pinfunction="A_2" pintype="passive"/>
-      <node ref="LED33" pin="2" pinfunction="A_2" pintype="passive"/>
-      <node ref="LED34" pin="2" pinfunction="A_2" pintype="passive"/>
-      <node ref="LED35" pin="2" pinfunction="A_2" pintype="passive"/>
-      <node ref="LED36" pin="2" pinfunction="A_2" pintype="passive"/>
-      <node ref="LED37" pin="2" pinfunction="A_2" pintype="passive"/>
-      <node ref="LED38" pin="2" pinfunction="A_2" pintype="passive"/>
-      <node ref="LED39" pin="2" pinfunction="A_2" pintype="passive"/>
-      <node ref="LED4" pin="2" pinfunction="A_2" pintype="passive"/>
-      <node ref="LED40" pin="2" pinfunction="A_2" pintype="passive"/>
-      <node ref="LED41" pin="2" pinfunction="A_2" pintype="passive"/>
-      <node ref="LED42" pin="2" pinfunction="A_2" pintype="passive"/>
-      <node ref="LED43" pin="2" pinfunction="A_2" pintype="passive"/>
-      <node ref="LED44" pin="2" pinfunction="A_2" pintype="passive"/>
-      <node ref="LED45" pin="2" pinfunction="A_2" pintype="passive"/>
-      <node ref="LED46" pin="2" pinfunction="A_2" pintype="passive"/>
-      <node ref="LED47" pin="2" pinfunction="A_2" pintype="passive"/>
-      <node ref="LED48" pin="2" pinfunction="A_2" pintype="passive"/>
-      <node ref="LED5" pin="2" pinfunction="A_2" pintype="passive"/>
-      <node ref="LED6" pin="2" pinfunction="A_2" pintype="passive"/>
-      <node ref="LED7" pin="2" pinfunction="A_2" pintype="passive"/>
-      <node ref="LED8" pin="2" pinfunction="A_2" pintype="passive"/>
-      <node ref="LED9" pin="2" pinfunction="A_2" pintype="passive"/>
-      <node ref="R1" pin="1" pintype="passive"/>
-      <node ref="R1" pin="2" pintype="passive"/>
-      <node ref="R2" pin="1" pintype="passive"/>
-      <node ref="R2" pin="2" pintype="passive"/>
-      <node ref="R3" pin="1" pintype="passive"/>
-      <node ref="R3" pin="2" pintype="passive"/>
-      <node ref="R4" pin="1" pintype="passive"/>
-      <node ref="R4" pin="2" pintype="passive"/>
-      <node ref="R5" pin="1" pintype="passive"/>
-      <node ref="R5" pin="2" pintype="passive"/>
-      <node ref="R6" pin="1" pintype="passive"/>
-      <node ref="R6" pin="2" pintype="passive"/>
-      <node ref="R7" pin="1" pintype="passive"/>
-      <node ref="R7" pin="2" pintype="passive"/>
-      <node ref="R8" pin="1" pintype="passive"/>
-      <node ref="R8" pin="2" pintype="passive"/>
-      <node ref="U1" pin="1" pinfunction="QB_1" pintype="tri_state"/>
-      <node ref="U1" pin="2" pinfunction="QC_2" pintype="tri_state"/>
-      <node ref="U1" pin="3" pinfunction="QD_3" pintype="tri_state"/>
-      <node ref="U1" pin="4" pinfunction="QE_4" pintype="tri_state"/>
-      <node ref="U1" pin="5" pinfunction="QF_5" pintype="tri_state"/>
-      <node ref="U1" pin="6" pinfunction="QG_6" pintype="tri_state"/>
-      <node ref="U1" pin="7" pinfunction="QH_7" pintype="tri_state"/>
-    </net>
-    <net code="26" name="Net-(LED1-K)" class="Default">
-      <node ref="LED1" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="LED10" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="LED11" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="LED12" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="LED13" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="LED14" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="LED15" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="LED16" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="LED17" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="LED18" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="LED19" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="LED2" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="LED20" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="LED21" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="LED22" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="LED23" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="LED24" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="LED25" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="LED26" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="LED27" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="LED28" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="LED29" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="LED3" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="LED30" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="LED31" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="LED32" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="LED33" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="LED34" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="LED35" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="LED36" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="LED37" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="LED38" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="LED39" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="LED4" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="LED40" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="LED41" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="LED42" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="LED43" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="LED44" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="LED45" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="LED46" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="LED47" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="LED48" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="LED5" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="LED6" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="LED7" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="LED8" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="LED9" pin="1" pinfunction="K_1" pintype="passive"/>
-    </net>
-    <net code="27" name="unconnected-(J1-Pin_4-Pad4)" class="Default">
-      <node ref="J1" pin="4" pinfunction="Pin_4_4" pintype="passive"/>
-    </net>
-    <net code="28" name="unconnected-(R9-Pad1)" class="Default">
-      <node ref="R9" pin="1" pintype="passive"/>
-    </net>
-    <net code="29" name="unconnected-(R10-Pad1)" class="Default">
-      <node ref="R10" pin="1" pintype="passive"/>
-    </net>
-    <net code="30" name="unconnected-(R11-Pad1)" class="Default">
-      <node ref="R11" pin="1" pintype="passive"/>
-    </net>
-    <net code="31" name="unconnected-(R12-Pad1)" class="Default">
-      <node ref="R12" pin="1" pintype="passive"/>
-    </net>
-    <net code="32" name="unconnected-(R13-Pad1)" class="Default">
-      <node ref="R13" pin="1" pintype="passive"/>
-    </net>
-    <net code="33" name="unconnected-(R14-Pad1)" class="Default">
-      <node ref="R14" pin="1" pintype="passive"/>
-    </net>
-    <net code="34" name="unconnected-(U1-GND-Pad8)" class="Default">
-      <node ref="U1" pin="8" pinfunction="GND_8" pintype="power_in"/>
-    </net>
-    <net code="35" name="unconnected-(U1-QA-Pad15)" class="Default">
-      <node ref="U1" pin="15" pinfunction="QA_15" pintype="tri_state"/>
-    </net>
-    <net code="36" name="unconnected-(U1-QH'-Pad9)" class="Default">
-      <node ref="U1" pin="9" pinfunction="QH'_9" pintype="output"/>
-    </net>
-    <net code="37" name="unconnected-(U1-SER-Pad14)" class="Default">
+    <net code="6" name="/DATA" class="Default">
+      <node ref="J1" pin="3" pinfunction="Pin_3_3" pintype="passive"/>
       <node ref="U1" pin="14" pinfunction="SER_14" pintype="input"/>
     </net>
-    <net code="38" name="unconnected-(U1-VCC-Pad16)" class="Default">
-      <node ref="U1" pin="16" pinfunction="VCC_16" pintype="power_in"/>
+    <net code="7" name="/LATCH" class="Default">
+      <node ref="J1" pin="4" pinfunction="Pin_4_4" pintype="passive"/>
+      <node ref="U1" pin="12" pinfunction="RCLK_12" pintype="input"/>
+    </net>
+    <net code="8" name="/ROW1" class="Default">
+      <node ref="LED1" pin="1" pinfunction="K_1" pintype="passive"/>
+      <node ref="LED2" pin="1" pinfunction="K_1" pintype="passive"/>
+      <node ref="LED3" pin="1" pinfunction="K_1" pintype="passive"/>
+      <node ref="Q1" pin="3" pinfunction="C_3" pintype="passive"/>
+    </net>
+    <net code="9" name="/ROW2" class="Default">
+      <node ref="LED4" pin="1" pinfunction="K_1" pintype="passive"/>
+      <node ref="LED5" pin="1" pinfunction="K_1" pintype="passive"/>
+      <node ref="LED6" pin="1" pinfunction="K_1" pintype="passive"/>
+      <node ref="Q2" pin="3" pinfunction="C_3" pintype="passive"/>
+    </net>
+    <net code="10" name="GND" class="Default">
+      <node ref="J1" pin="7" pinfunction="Pin_7_7" pintype="passive"/>
+      <node ref="Q1" pin="1" pinfunction="E_1" pintype="passive"/>
+      <node ref="Q2" pin="1" pinfunction="E_1" pintype="passive"/>
+      <node ref="U1" pin="13" pinfunction="~{OE}_13" pintype="input"/>
+      <node ref="U1" pin="8" pinfunction="GND_8" pintype="power_in"/>
+    </net>
+    <net code="11" name="Net-(J1-Pin_1)" class="Default">
+      <node ref="J1" pin="1" pinfunction="Pin_1_1" pintype="passive"/>
+      <node ref="R4" pin="1" pintype="passive"/>
+    </net>
+    <net code="12" name="Net-(J1-Pin_2)" class="Default">
+      <node ref="J1" pin="2" pinfunction="Pin_2_2" pintype="passive"/>
+      <node ref="R5" pin="1" pintype="passive"/>
+    </net>
+    <net code="13" name="Net-(Q1-B)" class="Default">
+      <node ref="Q1" pin="2" pinfunction="B_2" pintype="input"/>
+      <node ref="R4" pin="2" pintype="passive"/>
+    </net>
+    <net code="14" name="Net-(Q2-B)" class="Default">
+      <node ref="Q2" pin="2" pinfunction="B_2" pintype="input"/>
+      <node ref="R5" pin="2" pintype="passive"/>
+    </net>
+    <net code="15" name="Net-(U1-QB)" class="Default">
+      <node ref="R1" pin="1" pintype="passive"/>
+      <node ref="U1" pin="1" pinfunction="QB_1" pintype="tri_state"/>
+    </net>
+    <net code="16" name="Net-(U1-QC)" class="Default">
+      <node ref="R2" pin="1" pintype="passive"/>
+      <node ref="U1" pin="2" pinfunction="QC_2" pintype="tri_state"/>
+    </net>
+    <net code="17" name="Net-(U1-QD)" class="Default">
+      <node ref="R3" pin="1" pintype="passive"/>
+      <node ref="U1" pin="3" pinfunction="QD_3" pintype="tri_state"/>
+    </net>
+    <net code="18" name="unconnected-(U1-QA-Pad15)" class="Default">
+      <node ref="U1" pin="15" pinfunction="QA_15" pintype="tri_state+no_connect"/>
+    </net>
+    <net code="19" name="unconnected-(U1-QE-Pad4)" class="Default">
+      <node ref="U1" pin="4" pinfunction="QE_4" pintype="tri_state+no_connect"/>
+    </net>
+    <net code="20" name="unconnected-(U1-QF-Pad5)" class="Default">
+      <node ref="U1" pin="5" pinfunction="QF_5" pintype="tri_state+no_connect"/>
+    </net>
+    <net code="21" name="unconnected-(U1-QG-Pad6)" class="Default">
+      <node ref="U1" pin="6" pinfunction="QG_6" pintype="tri_state+no_connect"/>
+    </net>
+    <net code="22" name="unconnected-(U1-QH'-Pad9)" class="Default">
+      <node ref="U1" pin="9" pinfunction="QH'_9" pintype="output+no_connect"/>
+    </net>
+    <net code="23" name="unconnected-(U1-QH-Pad7)" class="Default">
+      <node ref="U1" pin="7" pinfunction="QH_7" pintype="tri_state+no_connect"/>
     </net>
   </nets>
 </export>
